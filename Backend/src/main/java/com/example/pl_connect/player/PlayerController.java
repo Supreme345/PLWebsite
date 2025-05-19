@@ -1,60 +1,56 @@
 package com.example.pl_connect.player;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/player")
+@RequestMapping("/api")
 public class PlayerController {
-    private final PlayerService playerService;
 
-    @Autowired
-    public PlayerController(PlayerService playerService) {
-        this.playerService = playerService;
+    private final PlayerRepository repository;
+
+    public PlayerController(PlayerRepository repository) {
+        this.repository = repository;
     }
 
-    @GetMapping
-    public List<Player> getPlayers(
-            @RequestParam(required = false) String team,
-            @RequestParam(required = false) String name,
-            @RequestParam(required = false) String position,
-            @RequestParam(required = false) String nation) {
+    // 1. Get all players
+    @GetMapping("/")
+    public List<Player> getAllPlayers() {
+        return repository.findAll();
+    }
 
-        if (team != null && position != null) {
-            return playerService.getPlayersByTeamAndPosition(team, position);
-        } else if (team != null) {
-            return playerService.getPlayersFromTeam(team);
-        } else if (name != null) {
-            return playerService.getPlayersByName(name);
-        } else if (position != null) {
-            return playerService.getPlayersByPos(position);
-        } else if (nation != null) {
-            return playerService.getPlayersByNation(nation);
-        } else {
-            return playerService.getPlayers();
-        }
+    // 2. Get all unique teams
+    @GetMapping("/teams")
+    public List<String> getAllTeams() {
+        return repository.findAllTeams();
     }
-    @PostMapping
-    public ResponseEntity<Player> addPlayer(@RequestBody Player player){
-        Player createdPlayer = playerService.addPlayer(player);
-        return new ResponseEntity<>(createdPlayer, HttpStatus.CREATED);
+
+    // 3. Filter by team
+    @GetMapping("/data")
+    public List<Player> getPlayersByTeam(@RequestParam(required = false) String team,
+                                         @RequestParam(required = false) String nation,
+                                         @RequestParam(required = false) String position) {
+        if (team != null) return repository.findByTeam(team);
+        if (nation != null) return repository.findByNation(nation);
+        if (position != null) return repository.findByPosition(position);
+        return repository.findAll();
     }
-    @PutMapping
-    public ResponseEntity<Player> updatePlayer(@RequestBody Player updatedPlayer) {
-        Player resultPlayer = playerService.updatePlayer(updatedPlayer);
-        if (resultPlayer != null) {
-            return new ResponseEntity<>(resultPlayer, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
+    // 4. Get all unique nations
+    @GetMapping("/nation")
+    public List<String> getAllNations() {
+        return repository.findAllNations();
     }
-    @DeleteMapping("/{playerName}")
-    public ResponseEntity<String> deletePlayer(@PathVariable String playerName) {
-        playerService.deletePlayer(playerName);
-        return new ResponseEntity<>("Player deleted successfully", HttpStatus.OK);
+
+    // 5. Get all unique positions
+    @GetMapping("/position")
+    public List<String> getAllPositions() {
+        return repository.findAllPositions();
+    }
+
+    // 6. Search by player name
+    @GetMapping("/search")
+    public List<Player> searchPlayersByName(@RequestParam String name) {
+        return repository.searchByName(name);
     }
 }

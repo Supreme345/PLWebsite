@@ -1,21 +1,71 @@
+### Backend (Java/Spring) ###
+# Compiled class files
+backend/target/
+backend/**/target/
+
+# Log files
+backend/*.log
+backend/logs/
+
+# IDE files
+backend/.idea/
+backend/*.iml
+backend/*.iws
+backend/*.ipr
+
 # Environment files
-.env
-.env.*
-!.env.example
+backend/.env
+backend/application-*.properties
 
-# Application properties with secrets
-application-*.properties
+# Maven
+backend/dependency-reduced-pom.xml
+backend/mvnw.cmd
+backend/.mvn/wrapper/maven-wrapper.properties
 
-# IDE files (IntelliJ)
-.idea/
-*.iml
-*.iws
 
-# Build/output directories
-target/
-build/
-out/
-bin/
+### Frontend (React/Node) ###
+# Dependencies
+frontend/node_modules/
+frontend/.pnp
+frontend/.pnp.js
 
-# Dependency directories
-node_modules/
+# Environment files
+frontend/.env*
+frontend/.env.local
+frontend/.env.development
+frontend/.env.test
+frontend/.env.production
+
+# Build files
+frontend/build/
+frontend/dist/
+frontend/.next/
+frontend/out/
+
+# Debug logs
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+# IDE
+frontend/.idea/
+frontend/.vscode/
+frontend/.DS_Store
+
+
+### Common ###
+# System Files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local development overrides
+*.local

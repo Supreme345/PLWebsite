@@ -18,7 +18,7 @@ const TeamData = () => {
     const nameValue = params.get('name');
     
     if (teamValue) {
-      axios.get(`http://localhost:8080/api/v1/player?team=${encodeURIComponent(teamValue)}`)
+      axios.get(`http://localhost:8081/api/data?team=${encodeURIComponent(teamValue)}`)
         .then(response => {
           setPlayerData(response.data);
           setLoading(false);
@@ -28,7 +28,7 @@ const TeamData = () => {
           setLoading(false);
         });
     } else if (nationValue){
-      axios.get(`http://localhost:8080/api/v1/player?nation=${encodeURIComponent(nationValue)}`)
+      axios.get(`http://localhost:8081/api/data?nation=${encodeURIComponent(nationValue)}`)
       .then(response => {
         setPlayerData(response.data);
         setLoading(false);
@@ -38,7 +38,7 @@ const TeamData = () => {
         setLoading(false);
       });
     } else if (positionValue){
-      axios.get(`http://localhost:8080/api/v1/player?position=${encodeURIComponent(positionValue)}`)
+      axios.get(`http://localhost:8081/api/data?position=${encodeURIComponent(positionValue)}`)
       .then(response => {
         setPlayerData(response.data);
         setLoading(false);
@@ -48,7 +48,7 @@ const TeamData = () => {
         setLoading(false);
       });
     } else if (nameValue){
-      axios.get(`http://localhost:8080/api/v1/player?name=${encodeURIComponent(nameValue)}`)
+      axios.get(`http://localhost:8081/api/search?name=${encodeURIComponent(nameValue)}`)
       .then(response => {
         setPlayerData(response.data);
         setLoading(false);
@@ -99,20 +99,20 @@ const TeamData = () => {
         </thead>
         <tbody>
           {playerData.slice(0, playersToShow).map(player => (
-            <tr key={player.name}>
-              <td>{player.name}</td>
-              <td>{player.pos}</td>
+            <tr key={player.player}>
+              <td>{player.player}</td>
+              <td>{player.position}</td>
               <td>{player.age}</td>
-              <td>{player.mp}</td>
+              <td>{player.matchesPlayed}</td>
               <td>{player.starts}</td>
-              <td>{player.min}</td>
-              <td>{player.gls}</td>
-              <td>{player.ast}</td>
-              <td>{player.pk}</td>
-              <td>{player.crdy}</td>
-              <td>{player.crdr}</td>
-              <td>{player.xg}</td>
-              <td>{player.xag}</td>
+              <td>{player.minutes}</td>
+              <td>{player.goals}</td>
+              <td>{player.assists}</td>
+              <td>{player.penalties}</td>
+              <td>{player.yellowCards}</td>
+              <td>{player.redCards}</td>
+              <td>{player.expectedGoals}</td>
+              <td>{player.expectedAssists}</td>
               <td>{player.team}</td>
             </tr>
           ))}

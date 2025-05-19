@@ -27,9 +27,6 @@ const Sidebar = () => {
                 <NavLink exact="true" activeclassname = "active" className = "position-link" to="/position">
                     <FontAwesomeIcon icon = {faTshirt}  onClick={() => setShowNav(false)}/>
                 </NavLink>
-                <NavLink exact="true" activeclassname = "active" className = "search-link" to="/search">
-                    <FontAwesomeIcon icon = {faSearch} onClick={() => setShowNav(false)} />
-                </NavLink>
                 <FontAwesomeIcon icon = {faClose} size = "3x" className="close-icon" onClick={() => setShowNav(false)} />
             </nav>
             <FontAwesomeIcon onClick={() => setShowNav(true)} icon={faBars} color="#ffd700" size="3x" className="hamburger-icon" />

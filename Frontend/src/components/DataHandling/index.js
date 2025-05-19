@@ -6,13 +6,13 @@ const DataHandling = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [playerData, setPlayerData] = useState([]);
-  
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const teamValue = params.get('team');
-    
+
     if (teamValue) {
-      axios.get(`http://localhost:8080/api/v1/player?team=${encodeURIComponent(teamValue)}`)
+      axios.get(`http://localhost:8081/api/data?team=${encodeURIComponent(teamValue)}`)
         .then(response => {
           setPlayerData(response.data);
           setLoading(false);
@@ -34,12 +34,11 @@ const DataHandling = () => {
     return <p>Error: {error.message}</p>;
   }
 
-
   return (
-    <div className = "table-container">
-        <table>
+    <div className="table-container">
+      <table>
         <thead>
-            <tr>
+          <tr>
             <th>Name</th>
             <th>Position</th>
             <th>Age</th>
@@ -54,32 +53,31 @@ const DataHandling = () => {
             <th>Expected Goals (xG)</th>
             <th>Expected Assists (xAG)</th>
             <th>Team</th>
-            </tr>
+          </tr>
         </thead>
         <tbody>
-            {playerData.map(player => (
-            <tr key={player.name}>
-                <td>{player.name}</td>
-                <td>{player.pos}</td>
-                <td>{player.age}</td>
-                <td>{player.mp}</td>
-                <td>{player.starts}</td>
-                <td>{player.min}</td>
-                <td>{player.gls}</td>
-                <td>{player.ast}</td>
-                <td>{player.pk}</td>
-                <td>{player.crdy}</td>
-                <td>{player.crdr}</td>
-                <td>{player.xg}</td>
-                <td>{player.xag}</td>
-                <td>{player.team}</td>
+          {playerData.map(player => (
+            <tr key={player.player}>
+              <td>{player.player}</td>
+              <td>{player.position}</td>
+              <td>{player.age}</td>
+              <td>{player.matchesPlayed}</td>
+              <td>{player.starts}</td>
+              <td>{player.minutes}</td>
+              <td>{player.goals}</td>
+              <td>{player.assists}</td>
+              <td>{player.penalties}</td>
+              <td>{player.yellowCards}</td>
+              <td>{player.redCards}</td>
+              <td>{player.expectedGoals}</td>
+              <td>{player.expectedAssists}</td>
+              <td>{player.team}</td>
             </tr>
-            ))}
+          ))}
         </tbody>
-        </table>
+      </table>
     </div>
   );
-  
 };
 
 export default DataHandling;

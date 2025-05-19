@@ -3,59 +3,86 @@ package com.example.pl_connect.player;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "player_stats")
+@Table(name = "\"player_data\"")
 public class Player {
     @Id
-    @Column(name = "name", unique = true)
-    private String name;
+    @Column(name = "\"Player\"")
+    private String player;
+
+    @Column(name = "\"Nation\"")
     private String nation;
-    private String pos;
+
+    @Column(name = "\"Pos\"")
+    private String position;
+
+    @Column(name = "\"Age\"")
     private Integer age;
-    private Integer mp;
+
+    @Column(name = "\"MP\"")
+    private Integer matchesPlayed;
+
+    @Column(name = "\"Starts\"")
     private Integer starts;
-    private Double min;
-    private Double gls;
-    private Double ast;
-    private Double pk;
-    private Double crdy;
-    private Double crdr;
-    private Double xg;
-    private Double xag;
+
+    @Column(name = "\"Min\"")
+    private Double minutes;
+
+    @Column(name = "\"Gls\"")
+    private Double goals;
+
+    @Column(name = "\"Ast\"")
+    private Double assists;
+
+    @Column(name = "\"PK\"")
+    private Double penalties;
+
+    @Column(name = "\"CrdY\"")
+    private Double yellowCards;
+
+    @Column(name = "\"CrdR\"")
+    private Double redCards;
+
+    @Column(name = "\"xG\"")
+    private Double expectedGoals;
+
+    @Column(name = "\"xAG\"")
+    private Double expectedAssists;
+
+    @Column(name = "\"Team\"")
     private String team;
 
+    // Constructors
+    public Player() {}
 
-    public Player(String name) {
-        this.name = name;
-    }
-
-    public Player(String name, String nation, String pos, int age, int mp, int starts, double min, double gls, double ast, double pk, double crdy, double crdr, double xg, double xag, String team) {
-        this.name = name;
+    public Player(String player, String nation, String position, Integer age,
+                  Integer matchesPlayed, Integer starts, Double minutes,
+                  Double goals, Double assists, Double penalties,
+                  Double yellowCards, Double redCards,
+                  Double expectedGoals, Double expectedAssists, String team) {
+        this.player = player;
         this.nation = nation;
-        this.pos = pos;
+        this.position = position;
         this.age = age;
-        this.mp = mp;
+        this.matchesPlayed = matchesPlayed;
         this.starts = starts;
-        this.min = min;
-        this.gls = gls;
-        this.ast = ast;
-        this.pk = pk;
-        this.crdy = crdy;
-        this.crdr = crdr;
-        this.xg = xg;
-        this.xag = xag;
+        this.minutes = minutes;
+        this.goals = goals;
+        this.assists = assists;
+        this.penalties = penalties;
+        this.yellowCards = yellowCards;
+        this.redCards = redCards;
+        this.expectedGoals = expectedGoals;
+        this.expectedAssists = expectedAssists;
         this.team = team;
     }
 
-    public Player() {
-
+    // Getters and Setters
+    public String getPlayer() {
+        return player;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setPlayer(String player) {
+        this.player = player;
     }
 
     public String getNation() {
@@ -66,100 +93,100 @@ public class Player {
         this.nation = nation;
     }
 
-    public String getPos() {
-        return pos;
+    public String getPosition() {
+        return position;
     }
 
-    public void setPos(String pos) {
-        this.pos = pos;
+    public void setPosition(String position) {
+        this.position = position;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public int getMp() {
-        return mp;
+    public Integer getMatchesPlayed() {
+        return matchesPlayed;
     }
 
-    public void setMp(int mp) {
-        this.mp = mp;
+    public void setMatchesPlayed(Integer matchesPlayed) {
+        this.matchesPlayed = matchesPlayed;
     }
 
-    public int getStarts() {
+    public Integer getStarts() {
         return starts;
     }
 
-    public void setStarts(int starts) {
+    public void setStarts(Integer starts) {
         this.starts = starts;
     }
 
-    public double getMin() {
-        return min;
+    public Double getMinutes() {
+        return minutes;
     }
 
-    public void setMin(double min) {
-        this.min = min;
+    public void setMinutes(Double minutes) {
+        this.minutes = minutes;
     }
 
-    public double getGls() {
-        return gls;
+    public Double getGoals() {
+        return goals;
     }
 
-    public void setGls(double gls) {
-        this.gls = gls;
+    public void setGoals(Double goals) {
+        this.goals = goals;
     }
 
-    public double getAst() {
-        return ast;
+    public Double getAssists() {
+        return assists;
     }
 
-    public void setAst(double ast) {
-        this.ast = ast;
+    public void setAssists(Double assists) {
+        this.assists = assists;
     }
 
-    public double getPk() {
-        return pk;
+    public Double getPenalties() {
+        return penalties;
     }
 
-    public void setPk(double pk) {
-        this.pk = pk;
+    public void setPenalties(Double penalties) {
+        this.penalties = penalties;
     }
 
-    public double getCrdy() {
-        return crdy;
+    public Double getYellowCards() {
+        return yellowCards;
     }
 
-    public void setCrdy(double crdy) {
-        this.crdy = crdy;
+    public void setYellowCards(Double yellowCards) {
+        this.yellowCards = yellowCards;
     }
 
-    public double getCrdr() {
-        return crdr;
+    public Double getRedCards() {
+        return redCards;
     }
 
-    public void setCrdr(double crdr) {
-        this.crdr = crdr;
+    public void setRedCards(Double redCards) {
+        this.redCards = redCards;
     }
 
-    public double getXg() {
-        return xg;
+    public Double getExpectedGoals() {
+        return expectedGoals;
     }
 
-    public void setXg(double xg) {
-        this.xg = xg;
+    public void setExpectedGoals(Double expectedGoals) {
+        this.expectedGoals = expectedGoals;
     }
 
-    public double getXag() {
-        return xag;
+    public Double getExpectedAssists() {
+        return expectedAssists;
     }
 
-    public void setXag(double xag) {
-        this.xag = xag;
+    public void setExpectedAssists(Double expectedAssists) {
+        this.expectedAssists = expectedAssists;
     }
 
     public String getTeam() {
@@ -170,23 +197,24 @@ public class Player {
         this.team = team;
     }
 
+    // toString() for debugging
     @Override
     public String toString() {
         return "Player{" +
-                "name='" + name + '\'' +
+                "player='" + player + '\'' +
                 ", nation='" + nation + '\'' +
-                ", pos='" + pos + '\'' +
+                ", position='" + position + '\'' +
                 ", age=" + age +
-                ", mp=" + mp +
+                ", matchesPlayed=" + matchesPlayed +
                 ", starts=" + starts +
-                ", min=" + min +
-                ", gls=" + gls +
-                ", ast=" + ast +
-                ", pk=" + pk +
-                ", crdy=" + crdy +
-                ", crdr=" + crdr +
-                ", xg=" + xg +
-                ", xag=" + xag +
+                ", minutes=" + minutes +
+                ", goals=" + goals +
+                ", assists=" + assists +
+                ", penalties=" + penalties +
+                ", yellowCards=" + yellowCards +
+                ", redCards=" + redCards +
+                ", expectedGoals=" + expectedGoals +
+                ", expectedAssists=" + expectedAssists +
                 ", team='" + team + '\'' +
                 '}';
     }
