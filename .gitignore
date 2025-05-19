@@ -1,0 +1,21 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Application properties with secrets
+application-*.properties
+
+# IDE files (IntelliJ)
+.idea/
+*.iml
+*.iws
+
+# Build/output directories
+target/
+build/
+out/
+bin/
+
+# Dependency directories
+node_modules/
